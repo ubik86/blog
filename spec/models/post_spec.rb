@@ -1,5 +1,12 @@
 require 'rails_helper'
 
+post = FactoryGirl.build(:post)
+
 RSpec.describe Post, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'when logged in' do
+  	it 'should present posts for user' do 
+  		expect(post.title).to eq 'MyString'
+  	end
+
+  end
 end
