@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  devise_for :users 
+
   resources :comments
-  devise_for :users
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
+
+  resources :users, only: :show do
+    resources :posts
+  end
+
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

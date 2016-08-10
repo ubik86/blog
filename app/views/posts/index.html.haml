@@ -1,25 +1,39 @@
-%h1 Listing posts
+.page-header
+  = link_to new_comment_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Post
+  %h1 Listing posts
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Content
-      %th Published
-      %th
-      %th
-      %th
-
-  %tbody
-    - @posts.each do |post|
+.table-responsive
+  %table.table.table-bordered.table-hover
+    %thead
       %tr
-        %td= post.title
-        %td= post.content
-        %td= post.published
-        %td= link_to 'Show', post
-        %td= link_to 'Edit', edit_post_path(post)
-        %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th Title
+        %th Content
+        %th Published
+        %th Comments
+        %th
+        %th
+        %th
 
-%br
+    %tbody
+      - @posts.each do |post|
+        %tr
+          %td= post.title
+          %td= post.content
+          %td= post.published
+          %td
+            = link_to "#{post.comments.size}",  post_comments_path(post) 
 
-= link_to 'New Post', new_post_path
+            - post.comments.each do |comment|
+              .toggle
+                = comment.desc.truncate_words(3)
+
+          %td= link_to 'Show', post
+          %td= link_to 'Edit', edit_post_path(post)
+          %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+ 
+
+  %br
+
+  = link_to 'New Post', new_post_path
