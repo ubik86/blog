@@ -18,9 +18,11 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Haml & Bootstrap
 gem 'haml'
 gem 'haml-rails'
-gem 'bootstrap'   #twitter bootstrap
+gem 'bootstrap-sass'   #twitter bootstrap
+gem 'bootstrap-generators', '~> 3.3.4'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -32,6 +34,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'   # authentication process
+gem 'faker'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -57,6 +60,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'database_cleaner'
+
+  gem 'guard-rspec'
 end
 
 group :development do

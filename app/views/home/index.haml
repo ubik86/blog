@@ -1,2 +1,10 @@
-%h1 Home Index
-%p  Find me in app/views/home/index.html.erb
+%h1 Welcome to Blog
+%p  Please Log in
+
+-# render 'devise/shared/links', resource_name: :user
+
+#devise_links
+	%p 
+		=link_to 'log in', new_user_session_path
+		= 'or'
+		=link_to 'sign up', new_user_registration_path

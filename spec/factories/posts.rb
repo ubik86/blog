@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :post do
-    title "MyString"
-    content "MyText"
+    title "Post"
+    content "Content"
     published false
+  	association :user
   end
 end

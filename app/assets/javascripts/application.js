@@ -16,4 +16,5 @@
 //= require bootstrap-sprockets
 //= require tether
 
+//= require bootstrap
 //= require_tree .

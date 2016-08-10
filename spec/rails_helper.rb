@@ -5,7 +5,9 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
+require 'support/controller_macros'
 require 'capybara/rails'
+require 'capybara/rspec'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -32,6 +34,18 @@ RSpec.configure do |config|
 
   # include FactoryGirl Methods 
   config.include FactoryGirl::Syntax::Methods
+  
+  # include Capybara
+  config.include Capybara::DSL
+  
+  # include Devise TEST
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
+  config.extend ControllerMacros, type: :controller
+  config.extend ControllerMacros, type: :request
+
+  include Warden::Test::Helpers
+  Warden.test_mode!
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   #config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -68,6 +82,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
+
   end
 
   config.before(:each, :js => true) do
