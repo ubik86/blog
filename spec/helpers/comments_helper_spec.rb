@@ -3,13 +3,21 @@ require 'rails_helper'
 # Specs in this file have access to a helper object that includes
 # the CommentsHelper. For example:
 #
-# describe CommentsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
+
+post = FactoryGirl.build(:post)
+
+i = 3
+i.times{|k| post.comments.build(desc: "comment #{k}")}
+
 RSpec.describe CommentsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  describe "print comments belongs_to post" do
+    it "print comments to post" do
+      expect(helper.comments_size(post)).to eq(i)
+    end
+
+    it "comments belongs_to post" do
+      expect(helper.p_comments(post)).to eq(post.comments.map{|m| m.desc}.join(','))
+    end
+  end
 end

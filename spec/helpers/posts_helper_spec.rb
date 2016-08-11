@@ -10,6 +10,18 @@ require 'rails_helper'
 #     end
 #   end
 # end
+
+user = FactoryGirl.build(:user)
+post = FactoryGirl.build(:post)
+
 RSpec.describe PostsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "print user belongs_to post" do
+    it "print user email" do
+      expect(helper.print_user(post)).to eq(post.user.email)
+    end
+
+    it "give comments belongs_to post" do
+      expect(helper.show_comments(post)).to eq(post.comments)
+    end
+  end
 end
