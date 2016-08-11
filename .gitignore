@@ -65,8 +65,13 @@ rerun.txt
 pickle-email-*.html
 
 # TODO Comment out these rules if you are OK with secrets being uploaded to the repo
+<<<<<<< HEAD
 #config/initializers/secret_token.rb
 #config/secrets.yml
+=======
+config/initializers/secret_token.rb
+config/secrets.yml
+>>>>>>> b7e3567100c5121626232bd24643a635b6e3a97b
 
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
