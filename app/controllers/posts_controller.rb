@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = current_user.posts.includes(:comments)
+    @posts = current_user.posts.search(params[:search]).includes(:comments)
   end
 
   # GET /posts/1
