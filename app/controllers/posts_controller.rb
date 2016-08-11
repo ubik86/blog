@@ -66,8 +66,6 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      #debugger
-
       @post = current_user.posts.find(params[:id])
       redirect_to root_path if @post.nil?
     end
