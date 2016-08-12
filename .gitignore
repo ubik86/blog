@@ -108,6 +108,9 @@ bower.json
 *.js
 
 
+### Ruby Beautifier settings ###
+.ruby-beautify
+
 ### SublimeText ###
 # cache files for sublime text
 *.tmlanguage.cache

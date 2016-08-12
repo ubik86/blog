@@ -3,6 +3,6 @@ FactoryGirl.define do
     title "Post"
     content "Content"
     published false
-  	association :user
+    association :user
   end
 end

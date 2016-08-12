@@ -1,5 +1,5 @@
 .page-header
-  = link_to new_comment_path, class: 'btn btn-primary' do
+  = link_to new_post_path, class: 'btn btn-primary' do
     %span.glyphicon.glyphicon-plus
     New Post
   %h1 Listing posts
@@ -18,7 +18,7 @@
           .col-lg-2
             .input-group
               = form_for posts_path, method: :get do
-                = text_field_tag :search, params[:search], class: 'form-control'
+                = text_field_tag :search, params[:search], placeholder: 'Search...', class: 'form-control'
                 %span.input-group-btn
                   = button_tag "Submit", type: :button, class: 'btn btn-default'
 
@@ -29,18 +29,26 @@
           %td= post.content
           %td= post.published
           %td
-            = link_to "#{post.comments.size}",  post_comments_path(post) 
+            -if post.comments.size > 0
+              = link_to "#{post.comments.size}",  post_comments_path(post) 
+            -else 
+              = "#{post.comments.size}"
 
             - post.comments.each do |comment|
               .toggle
                 = comment.desc.truncate_words(3)
+            %span{class: 'glyphicon glyphicon-plus'}
+              = link_to "Add", new_post_comment_path(post)
 
           %td
-            = link_to 'Show', post
+            %span{class: 'glyphicon glyphicon-eye-open', 'aria-hidden':'true'}
+              = link_to 'Show', post
           %td
-            = link_to 'Edit', edit_post_path(post)
+            %span{class: 'glyphicon glyphicon-pencil', 'aria-hidden':'true'}
+              = link_to 'Edit', edit_post_path(post) 
           %td
-            = link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            %span{class: 'glyphicon glyphicon-trash', 'aria-hidden':'true'}
+              = link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
  
 
   %br
