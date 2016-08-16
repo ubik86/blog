@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+user = User.create(email: 'boguslaw.tarnowski@blstream.com', password: 'test123')
+post = user.posts.create(title: 'Long post title 1', content: 'Long post content number 1')
+comments = 3.times{|i| post.comments.create(desc: "Comment number #{i+1} description")}
