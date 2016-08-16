@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = current_user.posts.search(params[:search]).includes(:comments)
+    @posts = current_user.posts.search(params[:search]).includes(:comments).page params[:page]
   end
 
   def show
@@ -57,6 +57,6 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:title, :content, :published)
+    params.require(:post).permit(:title, :content, :published, :page)
   end
 end

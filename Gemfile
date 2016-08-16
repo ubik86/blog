@@ -21,6 +21,8 @@ gem 'haml-rails'
 gem 'bootstrap-sass'   #twitter bootstrap
 gem 'bootstrap-generators', '~> 3.3.4'
 gem 'font-awesome-rails'
+# pagination with kaminari
+gem 'kaminari'          
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -64,6 +66,7 @@ group :development, :test do
   gem 'database_cleaner'
 
   gem 'guard-rspec'
+  gem 'kaminari-rspec'
 end
 
 group :development do

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "comments/index", type: :view do
   before(:each) do
-    assign(:comments, [
+    assign(:comments, Kaminari.paginate_array([
       Comment.create!(
         :desc => "Desc",
         post: FactoryGirl.build(:post)
@@ -11,7 +11,7 @@ RSpec.describe "comments/index", type: :view do
         :desc => "Desc",
         post: FactoryGirl.build(:post)
       )
-    ])
+    ]).page(1))
   end
 
   it "renders a list of comments" do

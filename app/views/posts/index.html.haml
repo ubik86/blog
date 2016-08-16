@@ -17,24 +17,10 @@
             = button_tag "Submit", type: :submit, class: 'btn btn-default'
   .row
     .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
-      - @posts.each do |post|
-        %hr/
-        .post-preview
-          %a{:href => post_path(post)}
-            %h2.post-title
-              =post.title
-            %h3.post-subtitle
-              =post.content
-          %p.post-meta
-            Posted by
-            = link_to post.user.email, post.user
-            on
-            = l post.created_at, format: :long
-          %h4.post-subtitle
-            Comments
-            = countComLink post
+      = render partial: 'row', collection: @posts
+
       %hr/
       / Pager
       %ul.pager
         %li.next
-          %a{:href => "#"} Older Posts →
+          = paginate @posts

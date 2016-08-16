@@ -15,6 +15,8 @@ Loging process needs to give email and password.
 - search in the posts and comments by title and content
 - create post assigned to users
 - create comments to post with parent_id, feature REPLY
+- pagination for posts and comments
+
 
 ##### Waiting in progress
 - stats: users, posts, comments per day, week, month, year

@@ -7,11 +7,11 @@ class CommentsController < ApplicationController
 
     # load comments belongs to post (or all comments), includes post in one query
     unless params[:post_id].nil?
-      @comments = current_user.posts.find(params[:post_id]).comments.includes(:post)
+      @comments = current_user.posts.find(params[:post_id]).comments.includes(:post).page params[:page]
       @post = current_user.posts.find(params[:post_id])
     end
 
-      @comments ||= current_user.comments.includes(:post)
+      @comments ||= current_user.comments.includes(:post).page params[:page]
   end
 
 
@@ -77,6 +77,6 @@ class CommentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def comment_params
-    params.require(:comment).permit(:desc,:post_id,:parent_id)
+    params.require(:comment).permit(:desc,:post_id,:parent_id, :page)
   end
 end

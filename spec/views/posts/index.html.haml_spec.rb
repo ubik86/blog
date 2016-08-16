@@ -2,20 +2,20 @@ require 'rails_helper'
 
 RSpec.describe "posts/index", type: :view do
   before(:each) do
-    assign(:posts, [
-      Post.create!(
-        :title => "Title",
-        :content => "MyText",
-        :published => false,
-        :user => FactoryGirl.build(:user)
-      ),
-      Post.create!(
-        :title => "Title",
-        :content => "MyText",
-        :published => false,
-        :user => FactoryGirl.build(:user)
-      )
-    ])
+    assign(:posts, Kaminari.paginate_array([
+        Post.create!(
+          :title => "Title",
+          :content => "MyText",
+          :published => false,
+          :user => FactoryGirl.build(:user)
+        ),
+        Post.create!(
+          :title => "Title",
+          :content => "MyText",
+          :published => false,
+          :user => FactoryGirl.build(:user)
+        )
+      ]).page(1))
   end
 
   it "renders a list of posts" do
