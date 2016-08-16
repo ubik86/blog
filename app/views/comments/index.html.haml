@@ -4,27 +4,16 @@
     New Comment
   %h1 Listing comments
 
-.table-responsive
 -unless @comments.empty?
-  %table.table.table-striped.table-bordered.table-hover
-    %thead
-      %tr
-        %th Post title
-        %th Desc
-        %th
-        %th
-        %th
-    %tbody
-      - @comments.each do |comment|
-        %tr
-          %td
-            - post = comment.post
-            = post.title  unless post.nil?
-          %td= comment.desc
-          %td= link_to 'Show', comment
-          %td= link_to 'Edit', edit_comment_path(comment, post_id: post)
-          %td= link_to 'Reply', new_comment_path(parent_id: comment, post_id: post)
+  .row
+    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+      = render partial: 'row', collection: @comments, locals: {post: @post}
 
-          %td= link_to 'Destroy', comment, data: { confirm: 'Are you sure?' }, method: :delete
 - else
-  Empty
+  .row
+    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+      .post-preview
+        -unless @post.nil?
+          %a{:href => post_path(@post)}
+            %h2.post-title
+              Empty

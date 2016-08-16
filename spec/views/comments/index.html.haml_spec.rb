@@ -16,6 +16,6 @@ RSpec.describe "comments/index", type: :view do
 
   it "renders a list of comments" do
     render
-    assert_select "tr>td", :text => "Desc".to_s, :count => 2
+    assert_select "h2", :text => "Desc".to_s, :count => 2
   end
 end

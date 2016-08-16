@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :set_post, only: [:new,:create,:update,:edit]
-
+  before_action :authenticate_user!
 
   def index
 
@@ -9,9 +9,9 @@ class CommentsController < ApplicationController
     unless params[:post_id].nil?
       @comments = current_user.posts.find(params[:post_id]).comments.includes(:post)
       @post = current_user.posts.find(params[:post_id])
-    else
-      @comments = current_user.comments.includes(:post)
     end
+
+      @comments ||= current_user.comments.includes(:post)
   end
 
 

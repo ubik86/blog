@@ -1,0 +1,14 @@
+- post = row.post
+
+%hr/
+.post-preview
+  %a{:href => post_path(post)}
+    %h2.post-title
+      =row.desc
+  %p.post-meta
+    Commented by
+    = link_to row.user.email, row.user
+    on
+    = l row.created_at, format: :long
+  %h4.post-subtitle
+    = link_to 'Reply', new_comment_path(parent_id: row, post_id: post)

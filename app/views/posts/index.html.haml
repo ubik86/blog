@@ -1,4 +1,12 @@
 / Main Content
+
+.page-header
+  -if user_signed_in?
+    = link_to new_post_path, class: 'btn btn-primary' do
+      %span.glyphicon.glyphicon-plus
+      New Post
+  %h1 Listing posts
+
 .container
   .row
     .col-lg-6
@@ -24,7 +32,7 @@
             = l post.created_at, format: :long
           %h4.post-subtitle
             Comments
-            = link_to post.c_quantity, post_comments_path(post)
+            = countComLink post
       %hr/
       / Pager
       %ul.pager

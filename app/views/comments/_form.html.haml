@@ -9,7 +9,6 @@
       %ul
         - @comment.errors.full_messages.each do |msg|
           %li= msg
-
   .form-group
     = f.hidden_field :parent_id
     = f.hidden_field :post_id
