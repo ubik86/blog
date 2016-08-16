@@ -14,11 +14,11 @@ Loging process needs to give email and password.
 - after login redirect to blog with posts and comments
 - search in the posts and comments by title and content
 - create post assigned to users
+- create comments to post with parent_id, feature REPLY
 
 ##### Waiting in progress
-- create comments to post with parent_id
 - stats: users, posts, comments per day, week, month, year
-
+- admin listning, manage post, users and comments
 
 ### Requirements
 
