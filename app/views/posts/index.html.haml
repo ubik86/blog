@@ -36,7 +36,7 @@
 
             - post.comments.each do |comment|
               .toggle
-                = comment.desc.truncate_words(3)
+                = comment.desc.truncate_words(3)  unless comment.desc.nil?
             %span{class: 'glyphicon glyphicon-plus'}
               = link_to "Add", new_post_comment_path(post)
 

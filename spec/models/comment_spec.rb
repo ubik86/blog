@@ -10,7 +10,7 @@ RSpec.describe Comment, type: :model do
     @comment.post = @post
     @comment.save!
 
-    3.times{|i| @comment.children.create desc: "desc #{i}" }
+    3.times{|i| @comment.children.create desc: "desc #{i}", post: @post }
 
     @comment.save!
   end

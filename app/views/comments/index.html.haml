@@ -22,7 +22,9 @@
             = post.title  unless post.nil?
           %td= comment.desc
           %td= link_to 'Show', comment
-          %td= link_to 'Edit', edit_comment_path(comment)
+          %td= link_to 'Edit', edit_comment_path(comment, post_id: post)
+          %td= link_to 'Reply', new_comment_path(parent_id: comment, post_id: post)
+
           %td= link_to 'Destroy', comment, data: { confirm: 'Are you sure?' }, method: :delete
 - else
   Empty

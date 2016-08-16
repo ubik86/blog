@@ -1,11 +1,17 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :set_post, only: [:new,:create,:update,:edit,:destroy]
+  before_action :set_post, only: [:new,:create,:update,:edit]
 
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all.includes(:post)
+
+    # load comments belongs to post (or all comments), includes post in one query
+    unless params[:post_id].nil?
+      @comments = current_user.posts.find(params[:post_id]).comments.includes(:post)
+    else
+      @comments = current_user.comments.includes(:post)
+    end
   end
 
   # GET /comments/1
@@ -15,9 +21,8 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
-
-      end
+    @comment = Comment.new(parent_id: params[:parent_id], post_id: params[:post_id])
+  end
 
   # GET /comments/1/edit
   def edit
@@ -64,12 +69,19 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
+
   def set_post
-    @post =  Post.find(params[:post_id])
+    @post = current_user.posts.find(params[:post_id]) unless params[:post_id].nil?
+    
+    unless params[:comment].nil? || params[:comment].empty? 
+      @post = current_user.posts.find(params[:comment][:post_id]) unless params[:comment][:post_id].nil?
+    end
+
+    raise ActiveRecord::RecordNotFound if @post.nil?
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def comment_params
-    params.require(:comment).permit(:desc)
+    params.require(:comment).permit(:desc,:post_id,:parent_id)
   end
 end

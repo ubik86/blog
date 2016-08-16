@@ -11,6 +11,8 @@
           %li= msg
 
   .form-group
+    = f.hidden_field :parent_id
+    = f.hidden_field :post_id
     = f.label :desc, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.text_field :desc, class: 'form-control'

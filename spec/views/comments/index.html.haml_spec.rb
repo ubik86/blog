@@ -4,10 +4,12 @@ RSpec.describe "comments/index", type: :view do
   before(:each) do
     assign(:comments, [
       Comment.create!(
-        :desc => "Desc"
+        :desc => "Desc",
+        post: FactoryGirl.build(:post)
       ),
       Comment.create!(
-        :desc => "Desc"
+        :desc => "Desc",
+        post: FactoryGirl.build(:post)
       )
     ])
   end
