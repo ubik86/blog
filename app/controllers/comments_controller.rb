@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     # load comments belongs to post (or all comments), includes post in one query
     unless params[:post_id].nil?
       @comments = current_user.posts.find(params[:post_id]).comments.includes(:post)
+      @post = current_user.posts.find(params[:post_id])
     else
       @comments = current_user.comments.includes(:post)
     end

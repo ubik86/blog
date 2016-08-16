@@ -8,7 +8,7 @@ RSpec.describe "Posts", type: :request do
 
       visit posts_path;
 
-      expect(page).to have_content('posts')
+      expect(page).to have_content('Posts')
     end
   end
 end

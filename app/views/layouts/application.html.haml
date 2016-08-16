@@ -6,7 +6,7 @@
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
     %meta{content: "", name: "description"}
     %meta{content: "", name: "author"}
-    %title Blog
+    %title BLog
 
     / HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
     /[if lt IE 9]
@@ -16,17 +16,19 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
-      .container
-        .navbar-header
-          %button.navbar-toggle.collapsed{type: "button", data: {toggle: "collapse", target: "#navbar"}, aria: {expanded: "false", controls: "navbar"} }
+    / Navigation
+    %nav.navbar.navbar-default.navbar-custom.navbar-fixed-top
+      .container-fluid
+        / Brand and toggle get grouped for better mobile display
+        .navbar-header.page-scroll
+          %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
             %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
+            Menu
+            %i.fa.fa-bars
           = link_to "Blog", root_path, class: "navbar-brand"
-        #navbar.collapse.navbar-collapse
-          %ul.nav.navbar-nav
+        / Collect the nav links, forms, and other content for toggling
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right
             -if user_signed_in?
               %li.active
                 = link_to "Posts", posts_path
@@ -38,6 +40,16 @@
             -else 
               %li
                 = link_to "Login", new_user_session_path
+
+    %header.intro-header{:style => "background-image: url('#{asset_path 'home-bg.jpg'}')"}
+      .container
+        .row
+          .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+            .site-heading
+              %h1 BLstream BLOG
+              %hr.small/
+              %span.subheading A Clean Blog Theme by Start Bootstrap
+
     .container
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
@@ -46,3 +58,27 @@
             %span.sr-only Close
           = msg
       = yield
+
+    %hr/
+    / Footer
+    %footer
+      .container
+        .row
+          .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+            %ul.list-inline.text-center
+              %li
+                %a{:href => "#"}
+                  %span.fa-stack.fa-lg
+                    %i.fa.fa-circle.fa-stack-2x
+                    %i.fa.fa-twitter.fa-stack-1x.fa-inverse
+              %li
+                %a{:href => "#"}
+                  %span.fa-stack.fa-lg
+                    %i.fa.fa-circle.fa-stack-2x
+                    %i.fa.fa-facebook.fa-stack-1x.fa-inverse
+              %li
+                %a{:href => "#"}
+                  %span.fa-stack.fa-lg
+                    %i.fa.fa-circle.fa-stack-2x
+                    %i.fa.fa-github.fa-stack-1x.fa-inverse
+            %p.copyright.text-muted Copyright © BLog 2016
