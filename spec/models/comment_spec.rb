@@ -16,7 +16,7 @@ RSpec.describe Comment, type: :model do
   end
 
 
-    context 'when logged in' do
+  context 'when logged in' do
     it 'should present comments for user' do 
       expect(@comment.desc).to eq 'MyString'
     end

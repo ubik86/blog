@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :posts
   end
 
+  resources :stats, only: [:index, :show]
+
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

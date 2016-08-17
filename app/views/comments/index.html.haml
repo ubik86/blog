@@ -1,7 +1,8 @@
 .page-header
-  = link_to new_comment_path(post_id: @post), class: 'btn btn-primary' do
-    %span.glyphicon.glyphicon-plus
-    New Comment
+  - unless @post.nil?
+    = link_to new_comment_path(post_id: @post), class: 'btn btn-primary' do
+      %span.glyphicon.glyphicon-plus
+      New Comment
   %h1 Listing comments
 
 -unless @comments.empty?
