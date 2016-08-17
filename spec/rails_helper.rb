@@ -6,8 +6,10 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'support/controller_macros'
+require 'support/omniauth_macros'
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'omniauth'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -41,6 +43,9 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :view
   config.extend ControllerMacros, type: :controller
   config.extend ControllerMacros, type: :request
+  config.extend OmniauthMacros, type: :controller
+  config.extend OmniauthMacros, type: :request
+
 
   include Warden::Test::Helpers
   Warden.test_mode!
@@ -94,4 +99,6 @@ RSpec.configure do |config|
   end
 
   # Config DatabaseCleaner END
+
+  OmniAuth.config.test_mode = true
 end
