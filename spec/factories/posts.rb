@@ -4,5 +4,6 @@ FactoryGirl.define do
     content "Content"
     published false
     association :user
+    created_at Time.now.to_date
   end
 end
