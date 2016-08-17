@@ -11,9 +11,6 @@ class StatsController < ApplicationController
 
   private
   def set_stats
-    @stats = {
-      yearly: '',
-      monthly: ''
-    }
+    @stats = Stat.new.all
   end
 end

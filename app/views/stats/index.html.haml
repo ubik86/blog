@@ -1,3 +1,26 @@
 .page-header
-  %h1 Stats#index
-%p Find me in app/views/stats/index.html.haml
+  -if user_signed_in?
+    %h4 
+      Hi
+    = current_user.name unless current_user.name.nil?
+  %h1 Stats
+
+.container
+  %table.table
+    %thead
+      %tr
+        %td
+          Period
+        %td
+          Posts
+        %td
+          Comments
+    %tbody
+      - @stats.map do |k,v|
+        %tr
+          %td
+            = k.to_s
+          %td
+            = v[:post]
+          %td
+            = v[:comment]
