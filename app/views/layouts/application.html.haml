@@ -30,9 +30,9 @@
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             -if user_signed_in?
-              %li.active
+              %li{class: active_controller('posts')}
                 = link_to "Posts", posts_path
-              %li
+              %li{class: active_controller('comments')}
                 = link_to "Comments", comments_path
               %li
                 = link_to "Logout", destroy_user_session_path, method: :delete 
