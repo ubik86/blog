@@ -33,7 +33,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'devise'   # authentication process
+gem 'devise'               # authentication process
+gem 'omniauth-facebook'    # facebook oauth for devise
+gem 'omniauth-twitter'    # twitter oauth for devise
 gem 'faker'
 
 

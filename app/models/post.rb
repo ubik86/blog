@@ -10,14 +10,8 @@ class Post < ActiveRecord::Base
     where(["title LIKE ?  OR content LIKE ? ", "%#{search}%", "%#{search}%"]).page
   end
 
-
   # return quantity of comments and all childrens
   def c_quantity
-    quantity=0 
-
-    self.comments.each do |c|
-      quantity += 1 + c.descendants.size
-    end
-    quantity
+    self.comments.size
   end
 end

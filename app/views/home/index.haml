@@ -1,10 +1,18 @@
-%h1 Welcome to Blog
-%p  Please Log in
+- unless signed_in?
+  %h1 Welcome to Blog
+  %p  Please Log in
+  
+  #devise_links
+    %p
+      =link_to 'log in', new_user_session_path
+      = 'or'
+      = link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path
+      = 'or'
+      = link_to 'sign up', new_user_registration_path
 
--# render 'devise/shared/links', resource_name: :user
-
-#devise_links
-	%p 
-		=link_to 'log in', new_user_session_path
-		= 'or'
-		=link_to 'sign up', new_user_registration_path
+- else
+  %h1 Welcome to Blog
+  #devise_links
+  %p
+    = link_to 'Posts', posts_path
+    = link_to 'comments', comments_path
