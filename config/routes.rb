@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :comments
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :stats, only: [:index, :show]
+  resources :profiles, only: [:show, :edit, :update]
 
   get 'home/index'
 

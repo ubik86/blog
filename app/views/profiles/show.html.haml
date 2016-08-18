@@ -1,0 +1,11 @@
+- is_finished = @profile.finished_profile? 
+
+.page-header
+  %h1 
+    Hi, 
+    = is_finished ? @profile.name : @profile.email
+- unless is_finished
+  Please finished your 
+- else 
+  Edit your 
+  = link_to "profile", edit_profile_path(@profile)
