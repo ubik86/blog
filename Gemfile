@@ -62,12 +62,12 @@ group :development, :test do
   gem 'thin'
   gem 'pry'
 
-  gem 'rspec-rails'
+  gem 'rspec-rails', require: false
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'database_cleaner'
 
-  gem 'guard-rspec'
+  gem 'guard-rspec', require: false
   gem 'kaminari-rspec'
 end
 
