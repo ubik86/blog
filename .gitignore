@@ -6,7 +6,11 @@
 
 # Ignore bundler config.
 /.bundle
-/.bundlers
+/.bundlers_wiktor
+
+#vagrant
+Vagrantfile
+.vagrant
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
