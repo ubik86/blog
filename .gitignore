@@ -17,6 +17,10 @@
 /tmp
 .byebug_history
 
+#Vagrant
+Vagrantfile
+.vagrant
+
 
 # Created by https://www.gitignore.io/api/macos,rails,sass,coffeescript,sublimetext
 
