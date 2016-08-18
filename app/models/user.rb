@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   :recoverable, :rememberable, :trackable, :validatable, 
   :omniauthable, omniauth_providers: [:facebook]
 
+  attachment :profile_image
+
   has_many :posts, dependent: :destroy
   has_many :comments, through: :posts, dependent: :destroy
 

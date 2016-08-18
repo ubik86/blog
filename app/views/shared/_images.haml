@@ -1,0 +1,8 @@
+%dl.dl-horizontal
+  - if profile.image
+    Facebook image
+    = image_tag profile.image
+%dl.dl-horizontal
+  - if profile.profile_image
+    Uploaded image
+    = image_tag attachment_url(profile, :profile_image)

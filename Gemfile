@@ -39,6 +39,10 @@ gem 'omniauth-twitter'    # twitter oauth for devise
 gem 'faker'
 
 
+# Image upload library
+gem "refile", require: "refile/rails"
+gem "refile-mini_magick"
+
 # makes Tree in Models 
 gem 'ancestry'
 

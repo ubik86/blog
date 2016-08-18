@@ -9,4 +9,8 @@
 - else 
   Edit your 
   = link_to "profile", edit_profile_path(@profile)
-  =image_tag @profile.image
+
+  .row
+    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+      .post-preview
+        = render partial: 'shared/images', locals: {profile: @profile}

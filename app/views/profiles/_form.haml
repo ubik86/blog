@@ -17,6 +17,12 @@
     = f.label :email, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.text_field :email, class: 'form-control'
+  
+  .form-group
+    = f.label :profile_image, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.attachment_field :profile_image , class: 'form-control'
+    = render partial: 'shared/images', locals: {profile: @profile}
 
   .form-group
     .col-sm-offset-2.col-sm-10
