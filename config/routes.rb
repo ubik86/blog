@@ -8,9 +8,6 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :users, only: :show do
-    resources :posts
-  end
 
   resources :stats, only: [:index, :show]
   resources :profiles, only: [:show, :edit, :update]

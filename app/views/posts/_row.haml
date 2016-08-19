@@ -7,7 +7,7 @@
       =row.content
   %p.post-meta
     Posted by
-    = link_to row.user.email, row.user
+    = link_to row.user.email, profile_path(row.user)
     on
     = l row.created_at, format: :long
   %h4.post-subtitle
