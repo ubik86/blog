@@ -24,6 +24,6 @@ class User < ActiveRecord::Base
 
 
   def finished_profile?
-    self.name? && self.image?
+    self.name? && (self.image? || self.profile_image)
   end
 end

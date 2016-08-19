@@ -6,14 +6,14 @@
         - @post.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .form-group.row
     = f.label :title
-    = f.text_field :title
-  .field
+    = f.text_field :title, class: 'form-control'
+  .form-group.row
     = f.label :content
-    = f.text_area :content
-  .field
+    = f.text_area :content, class: 'form-control'
+  .form-group.row
     = f.label :published
-    = f.check_box :published
-  .actions
-    = f.submit 'Save'
+    = f.check_box :published, class: 'form-control'
+  .actions.row
+    = f.submit 'Save', class: 'btn btn-primary'

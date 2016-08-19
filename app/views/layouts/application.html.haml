@@ -35,7 +35,7 @@
               %li{class: active_controller('comments')}
                 = link_to "Comments", comments_path
               %li{class: active_controller('profiles')}
-                = link_to "Profiles", profile_path(current_user)
+                = link_to "Profile", profile_path(current_user)
               %li
                 = link_to "Logout", destroy_user_session_path, method: :delete 
     
@@ -44,7 +44,7 @@
                 = link_to "Login", new_user_session_path
 
     %header.intro-header{:style => "background-image: url('#{asset_path 'home-bg.jpg'}')"}
-      .container
+      .container-fluid
         .row
           .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
             .site-heading
@@ -52,15 +52,16 @@
               %hr.small/
               %span.subheading A Clean Blog Theme by Start Bootstrap
 
-    .container
-      - flash.each do |name, msg|
-        = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
-          %button.close{type: "button", data: {dismiss: "alert"} }
-            %span{aria: {hidden: "true"} } &times;
-            %span.sr-only Close
-          = msg
-      = yield
-
+    .container-fluid
+      .col-lg-2
+      .col-lg-7
+        - flash.each do |name, msg|
+          = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
+            %button.close{type: "button", data: {dismiss: "alert"} }
+              %span{aria: {hidden: "true"} } &times;
+              %span.sr-only Close
+            = msg
+        = yield
     %hr/
     / Footer
     %footer
