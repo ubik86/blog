@@ -42,4 +42,5 @@ Rails.application.configure do
 
   config.allow_concurrency = false
 
+  config.action_mailer.default_url_options = { host: 'ubuntu.blog', port: 8080 }
 end
