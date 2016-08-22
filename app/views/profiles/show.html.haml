@@ -9,6 +9,10 @@
 - else 
   Edit your 
 = link_to "profile", edit_profile_path(@profile)
+%br
+Change Password or cancel account?
+= link_to "edit user", edit_user_registration_path
+
 .row
   .post-preview
     = render partial: 'shared/images', locals: {profile: @profile}
