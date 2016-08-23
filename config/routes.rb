@@ -10,6 +10,22 @@ Rails.application.routes.draw do
 
   resources :stats, only: [:index, :show]
   resources :profiles, only: [:show, :edit, :update]
+  
+
+  # Versioned API for Blog
+  # You need to add /etc/hosts subdomain api
+  # example:  
+  # 192.168.31.234  ubuntu.blog
+  # 192.168.31.234  api.ubuntu.blog
+  
+  namespace :api, path: '/', constraints: {subdomain: 'api'},  defaults: {format: :json} do | api |
+    namespace :v1 do |v1|
+      resources :users, only: [:show]
+    end
+    namespace :v2 do |v2| 
+      resources :users, only: [:show]
+    end
+  end
 
   get 'home/index'
 

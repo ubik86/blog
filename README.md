@@ -173,6 +173,27 @@ This gem is a port of Perl's Data::Faker library that generates fake data.
 https://github.com/stympy/faker
 
 
+## API
+
+### versioned API for Blog
+
+First you need to add /etc/hosts subdomain api
+example:  
+127.0.0.1  blog
+127.0.0.1  api.blog
+
+watch routes and test with curl
+```console
+$ rake routes | grep api
+$ curl api.blog:3000/v1/users/1
+```
+
+curl command will return json:
+
+{"id":1,"email":"test@example.com","created_at":"2016-08-22T13:14:54.544Z","updated_at":"2016-08-22T13:16:11.996Z","admin":null,"provider":null,"uid":null,"name":"Test User","image":"http://graph.facebook.com/v2.6/1062656937103590/picture","profile_image_id":null}
+
+
+
 ## License
 
 MIT License. Copyright 2016
