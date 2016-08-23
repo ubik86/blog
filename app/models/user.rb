@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     self.name? && (self.image? || self.profile_image)
   end
 
+  def profile_img
+    self.image || self.profile_image
+  end
+
   def password_required?
     super if confirmed?
   end
