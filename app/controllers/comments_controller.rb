@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-
+    @comment.user = @user
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
@@ -66,10 +66,12 @@ class CommentsController < ApplicationController
   end
 
   def set_post
-    @post = current_user.posts.find(params[:post_id]) unless params[:post_id].nil?
+    @user = current_user
+    @post = @user.posts.find(params[:post_id]) unless params[:post_id].nil?
     
+
     unless params[:comment].nil? || params[:comment].empty? 
-      @post = current_user.posts.find(params[:comment][:post_id]) unless params[:comment][:post_id].nil?
+      @post = @user.posts.find(params[:comment][:post_id]) unless params[:comment][:post_id].nil?
     end
 
     raise ActiveRecord::RecordNotFound if @post.nil?

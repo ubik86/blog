@@ -179,10 +179,14 @@ https://github.com/stympy/faker
 
 First you need to add /etc/hosts subdomain api
 example:  
+```console
+# /etc/hosts
 0.0.0.0  blog
 0.0.0.0  api.blog
+```
 
-login to API with curl user / token
+
+Login to APP via API with curl user / token
 ```console
 $ rake routes | grep api
 $ curl -H "Content-Type: application/json" -X POST -d '{"email":"test@example.com", "password": "test123"}' http://api.blog:[port]/v1/sessions
@@ -193,6 +197,14 @@ curl command will return success:true, auth_token:
 
 ```ruby
 {"success":true,"auth_token":"BgUAJtv-nFZKfXq2JMZE","login":"test@example.com"}
+```
+
+Creating posts via API
+```console
+$ curl -H "Content-Type: application/json" -X POST -d '{"content":"description", "title": "title", "token": "your_auth_token"}' http://api.blog:[port]/v1/posts
+
+return
+{"success":true,"post":{"id":4,"user_id":1,"title":"title","content":"description","published":null,"created_at":"2016-08-23T12:46:48.340Z","updated_at":"2016-08-23T12:46:48.340Z"}}
 ```
 
 

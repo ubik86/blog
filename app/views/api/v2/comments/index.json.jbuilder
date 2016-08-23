@@ -5,12 +5,13 @@ json.user do
 end
 
 json.comments @comments do |c|
-  json.desc c.desc
-  json.children c.children
-  json.ancestry c.ancestry
+  json.id         c.id
+  json.desc       c.desc
+  json.children   c.children
+  json.ancestry   c.ancestry
 
   json.post  do |p|
-    json.title c.post.title
-    json.content c.post.content
+    json.title    c.post.title
+    json.content  c.post.content
   end
 end

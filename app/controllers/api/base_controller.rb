@@ -1,5 +1,6 @@
 module API
   class BaseController < ApplicationController
+    skip_before_filter :verify_authenticity_token, :only => :create
 
 
     protected
@@ -15,5 +16,10 @@ module API
         render(json: {success: false, message: "Unauthenticated access"}, status: 401)
       end
     end
+
+    def create_params
+      params.permit(:token)
+    end
+
   end
 end

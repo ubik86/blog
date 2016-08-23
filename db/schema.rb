@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20160822072857) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "post_id"
+    t.integer  "user_id"
     t.string   "desc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -25,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160822072857) do
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"

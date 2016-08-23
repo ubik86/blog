@@ -2,8 +2,7 @@ module API
   module V1
     class PostsController < API::BaseController
       before_filter :authenticate_user_from_token!
-      before_filter :create_params, only: [:index]
-      before_filter :set_posts
+      before_filter :set_posts, only: [:index]
 
       respond_to :json
       
@@ -13,13 +12,21 @@ module API
 
 
       def create
-        render json: {}
+        @post = Post.new(post_params)
+        @post.user = current_user
+
+        if @post.save
+          render json: {success: true, post: @post}
+        else
+          render json: {success: false, errors: @post.errors}
+        end
       end
 
 
       protected
-      def create_params
-        params.permit(:token)
+
+      def post_params
+        params.permit(:title, :content, :published, :page)
       end
 
       def set_posts

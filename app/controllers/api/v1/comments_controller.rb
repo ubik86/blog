@@ -2,8 +2,7 @@ module API
   module V1
     class CommentsController < API::BaseController
       before_filter :authenticate_user_from_token!
-      before_filter :create_params, only: [:index]
-      before_filter :set_comments
+      before_filter :set_comments, only: [:index]
 
       respond_to :json
       
@@ -13,17 +12,25 @@ module API
 
 
       def create
-        render json: {}
+        @comment = Comment.new(comment_params)
+        @comment.user = current_user
+
+        if @comment.save
+          render json: {success: true, comment: @comment}
+        else
+          render json: {success: false, errors: @comment.errors}
+        end
       end
 
 
       protected
-      def create_params
-        params.permit(:token)
+      def comment_params
+        params.permit(:desc,:post_id,:parent_id,:ancestry)
       end
 
       def set_comments
-        @comments = current_user.comments.includes(:post)
+        @user = @current_user
+        @comments = @user.comments.includes(:post)
       end
     end
   end
