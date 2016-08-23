@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   
   namespace :api, path: '/', constraints: {subdomain: 'api'},  defaults: {format: :json} do | api |
     namespace :v1 do |v1|
-      resources :users, only: [:show]
+      resources :users, only: [:index, :show]
+      devise_scope :user do
+        resources :sessions,        defaults: {format: :json}, only: [:create]
+        #resources :registrations,   defaults: {format: :json}
+       end
     end
     namespace :v2 do |v2| 
       resources :users, only: [:show]

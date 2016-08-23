@@ -41,11 +41,27 @@ class User < ActiveRecord::Base
     password == password_confirmation && !password.blank?
   end
 
+  def ensure_authentication_token
+    self.authentication_token = generate_authentication_token
+    self.save!
+    self.authentication_token
+  end
+
+  protected
+  # generate password
   def generate_password!
     if password.blank? && password_confirmation.blank?
       pass = Devise.friendly_token.first(8)
       self.password, self.password_confirmation = pass, pass
       self.gpasswd = pass
+    end
+  end
+
+  # generate unique token
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.where(authentication_token: token).first
     end
   end
 end
