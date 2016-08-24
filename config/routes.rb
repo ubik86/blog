@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
       devise_scope :user do
         resources :sessions,        defaults: {format: :json}, only: [:create]
-       end
+      end
     end
   end
 

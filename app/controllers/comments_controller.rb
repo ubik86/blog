@@ -69,7 +69,6 @@ class CommentsController < ApplicationController
     @user = current_user
     @post = @user.posts.find(params[:post_id]) unless params[:post_id].nil?
     
-
     unless params[:comment].nil? || params[:comment].empty? 
       @post = @user.posts.find(params[:comment][:post_id]) unless params[:comment][:post_id].nil?
     end

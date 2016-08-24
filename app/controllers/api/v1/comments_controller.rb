@@ -28,9 +28,8 @@ module API
         params.permit(:desc,:post_id,:parent_id,:ancestry)
       end
 
-      def set_comments
-        @user = @current_user
-        @comments = @user.comments.includes(:post)
+      def set_comments        
+        @comments = current_user.comments.includes(:post)
       end
     end
   end

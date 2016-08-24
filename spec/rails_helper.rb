@@ -7,6 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'support/controller_macros'
 require 'support/omniauth_macros'
+require 'support/request_helpers'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'omniauth'
@@ -45,7 +46,7 @@ RSpec.configure do |config|
   config.extend ControllerMacros, type: :request
   config.extend OmniauthMacros, type: :controller
   config.extend OmniauthMacros, type: :request
-
+  config.include Requests::JsonHelpers, type: :request
 
   include Warden::Test::Helpers
   Warden.test_mode!
