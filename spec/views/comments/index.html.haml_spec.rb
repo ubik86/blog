@@ -5,10 +5,12 @@ RSpec.describe "comments/index", type: :view do
     assign(:comments, Kaminari.paginate_array([
       Comment.create!(
         :desc => "Desc",
+        user: FactoryGirl.build(:user),
         post: FactoryGirl.build(:post)
       ),
       Comment.create!(
         :desc => "Desc",
+        user: FactoryGirl.build(:user),
         post: FactoryGirl.build(:post)
       )
     ]).page(1))

@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe "comments/edit", type: :view do
   before(:each) do
     @comment = assign(:comment, Comment.create!(
-      desc: "MyString", post: FactoryGirl.build(:post)
+      desc: "MyString",
+      user: FactoryGirl.build(:user),
+      post: FactoryGirl.build(:post)
     ))
   end
 

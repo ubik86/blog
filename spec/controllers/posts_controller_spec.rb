@@ -25,7 +25,7 @@ RSpec.describe PostsController, type: :controller do
   # Post. As you add validations to Post, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {title: 'tytul', content: 'tresc'}
+    {title: 'tytul', content: 'tresc', user_id: 1}
   }
 
   let(:invalid_attributes) {
@@ -35,13 +35,15 @@ RSpec.describe PostsController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # PostsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) {
+       {} }
 
   describe "index action in PostsController" do
 
     it "go to index action" do
       #post = Post.create! valid_attributes 
-      get :index, params: {}, session: valid_session
+
+      get :index, params: {page: 1, search: ''}, session: valid_session
       expect(response.status).to eq(200)
     end
 

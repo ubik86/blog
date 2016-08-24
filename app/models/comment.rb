@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
   has_ancestry        
   paginates_per 5     # 5 objects per page
 
-  validates :post, :desc, presence: true
+  validates :post, :desc, :user, presence: true
 
 
   # return quantity of childrens

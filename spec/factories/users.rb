@@ -3,7 +3,7 @@ FactoryGirl.define do
     email 		{ Faker::Internet.email }
     password 	'Test123'
     password_confirmation "Test123"
-    #confirmed_at Date.today
+    confirmed_at Date.today
   end
 
   factory :admin, class: User do 
