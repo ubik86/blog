@@ -17,7 +17,7 @@ comments = 3.times{|i| user.comments.create(desc: "Comment number #{i+1} descrip
 
 # friendships build
 people.each do |p|
-  person = Person.create(name: p[:name], login: p[:login], email: p[:email])
+  person = Person.create(name: p[:name], login: p[:login], email: p[:email], user: user)
   person.tags.create(postable: post, user: user)
 end
 

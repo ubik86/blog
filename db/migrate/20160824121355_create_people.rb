@@ -1,9 +1,10 @@
 class CreatePeople < ActiveRecord::Migration
   def change
     create_table :people do |t|
-      t.string :name
-      t.string :login
-      t.string :email
+      t.references    :user
+      t.string        :name
+      t.string        :login
+      t.string        :email
 
       t.timestamps null: false
     end

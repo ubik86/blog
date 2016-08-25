@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160824134758) do
   add_index "friendships", ["person_id"], name: "index_friendships_on_person_id", using: :btree
 
   create_table "people", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.string   "login"
     t.string   "email"

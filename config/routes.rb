@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :people
+  resources :friendships, only: [:create, :destroy]
+
   resources :stats, only: [:index, :show]
   resources :profiles, only: [:show, :edit, :update]
   
