@@ -17,4 +17,10 @@ class Post < ActiveRecord::Base
   def c_quantity
     self.comments.size
   end
+
+
+  def find_taggable
+
+
+  end
 end
