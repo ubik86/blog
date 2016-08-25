@@ -1,5 +1,8 @@
 class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
+  has_many :tags, as: :postable 
+  has_many :people, through: :tags
+
   belongs_to :user
   paginates_per 5
 
