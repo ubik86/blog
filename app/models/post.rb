@@ -19,8 +19,22 @@ class Post < ActiveRecord::Base
   end
 
 
+  # find tagged people (@login) from Post.content
+  # return hash {found: [Person], not_found: [String]}
   def find_taggable
+    tags = self.content.scan(/@\w+/)
+    logins  = tags.map{|i| i.sub('@','')}
+    found, not_found = [],[] 
+    
+    logins.each do |login|
+      person = Person.where(login: login).first
+      if person.nil?
+        not_found << login
+      else
+        found << person
+      end
+    end
 
-
+    {found: found, not_found: not_found} 
   end
 end

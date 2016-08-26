@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
-  def create
 
+  def create
     @person = Person.first
     @friendship = @person.friendships.build(friend_id: params[:friend_id])
 

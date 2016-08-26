@@ -37,7 +37,7 @@
               %li{class: active_controller('profiles')}
                 = link_to "Profile", profile_path(current_user)
               %li
-                = link_to "Logout", destroy_user_session_path, method: :delete 
+                = link_to "Logout", destroy_user_session_path
     
             -else 
               %li
