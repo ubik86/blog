@@ -34,6 +34,8 @@
                 = link_to "Posts", posts_path
               %li{class: active_controller('comments')}
                 = link_to "Comments", comments_path
+              %li{class: active_controller('peoples')}
+                = link_to "People", people_path
               %li{class: active_controller('profiles')}
                 = link_to "Profile", profile_path(current_user)
               %li

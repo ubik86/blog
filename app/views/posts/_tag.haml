@@ -1,0 +1,13 @@
+- person = tag.person
+= "@#{person.login} "
+- if person.name
+  = ', name: '+ person.name
+- if person.email
+  = ', email: '+ person.email
+- unless tag.confirmed_at.nil?
+  Confirmed at
+  = t tag.confirmed_at
+- else
+  , not confirmed
+
+%br

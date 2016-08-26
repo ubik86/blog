@@ -6,10 +6,10 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :people
-
-  resources :friendships, only: [:create, :destroy]
-
+  resources :people do
+    resources :friendships, only: [:new, :create, :destroy]
+  end
+  
   resources :stats, only: [:index, :show]
   resources :profiles, only: [:show, :edit, :update]
   

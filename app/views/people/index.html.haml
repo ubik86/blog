@@ -1,20 +1,30 @@
 .page-header
   = link_to new_person_path, class: 'btn btn-primary' do
     %span.glyphicon.glyphicon-plus
-    New Person
+    New 
   %h1 Listing people
 
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
+        %th 
+          Login
         %th
+          Name
         %th
-        %th
+          Email
+        %th{colspan: 4}
+          Actions
 
     %tbody
       - @people.each do |person|
         %tr
+          %td= person.login
+          %td= person.name
+          %td= person.email
+
+          %td= link_to 'New friendship', new_person_friendship_path(person)
           %td= link_to 'Show', person
           %td= link_to 'Edit', edit_person_path(person)
           %td= link_to 'Destroy', person, data: { confirm: 'Are you sure?' }, method: :delete

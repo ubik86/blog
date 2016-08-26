@@ -9,7 +9,13 @@
 %p
   %b Published:
   = @post.published
-
-= link_to 'Edit', edit_post_path(@post)
-\|
-= link_to 'Back', posts_path
+%p 
+  %b
+    Tagged people 
+    = @tags.count
+    %br
+  = render partial: 'tag', collection: @tags
+%p 
+  = link_to 'Edit', edit_post_path(@post)
+  \|
+  = link_to 'Back', posts_path

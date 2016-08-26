@@ -11,6 +11,8 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    @friends = @person.friends
+    @fof = @person.fof
   end
 
   # GET /people/new

@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
-  has_many :tags, as: :postable 
+  has_many :tags, as: :postable, dependent: :destroy 
   has_many :people, through: :tags
 
   belongs_to :user
@@ -21,11 +21,13 @@ class Post < ActiveRecord::Base
 
   # find tagged people (@login) from Post.content
   # return hash {found: [Person], not_found: [String]}
-  def find_taggable
-    tags = self.content.scan(/@\w+/)
+  def self.find_taggable(content)
+    tags = content.scan(/@\w+/)
     logins  = tags.map{|i| i.sub('@','')}
     found, not_found = [],[] 
     
+    Person.where(login: logins)
+
     logins.each do |login|
       person = Person.where(login: login).first
       if person.nil?
@@ -37,4 +39,5 @@ class Post < ActiveRecord::Base
 
     {found: found, not_found: not_found} 
   end
+
 end
