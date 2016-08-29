@@ -9,7 +9,15 @@
       %ul
         - @person.errors.full_messages.each do |msg|
           %li= msg
-
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  .form-group.row
+    = f.label :login
+    = f.text_field :login, class: 'form-control'
+  .form-group.row
+    = f.label :email
+    = f.text_field :email, class: 'form-control'
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: 'btn btn-primary'
