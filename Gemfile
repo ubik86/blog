@@ -78,6 +78,9 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'kaminari-rspec'
   gem 'simplecov', :require => false
+
+  #gem 'shoulda'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
