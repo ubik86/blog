@@ -35,8 +35,22 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  def update
+    @friendship = Friendship.where(friend_id: params[:id], person_id: params[:person_id]).first
+    @person = Person.find(params[:person_id])
+
+
+    respond_to do |format|
+      if @friendship.update(confirmed_at: Time.now)
+        format.js 
+      else
+        format.js { render :action => 'new' }
+      end
+    end
+  end
+
   def destroy
-    @friendship = Friendships.find(params[:id])
+    @friendship = Friendship.find(params[:id])
 
     respond_to do |format|
       if @friendship.destroy
@@ -44,4 +58,12 @@ class FriendshipsController < ApplicationController
       end      
     end
   end
+
+  private
+
+  def friendships_params
+    params.require(:post).permit(:title, :content, :published, :page)
+  end
+
+
 end

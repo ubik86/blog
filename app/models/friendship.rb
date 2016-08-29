@@ -4,5 +4,8 @@ class Friendship < ActiveRecord::Base
 
   validates :person, uniqueness: {scope: :friend}
 
+  scope :confirmed, -> { where.not(confirmed_at: nil)}
+  scope :unconfirmed, -> { where(confirmed_at: nil)}
+
   attr_accessor :search_friends
 end

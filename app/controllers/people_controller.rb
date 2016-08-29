@@ -6,11 +6,14 @@ class PeopleController < ApplicationController
   # GET /people.json
   def index
     @people = Person.all
+
+    @user_people  = current_user.people.includes(:confirmed_friends, :unconfirmed_friends) 
   end
 
   # GET /people/1
   # GET /people/1.json
   def show
+    @friendships = @person.friendships
     @friends = @person.friends
     @fof = @person.fof
   end

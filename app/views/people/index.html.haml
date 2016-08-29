@@ -28,3 +28,33 @@
           %td= link_to 'Show', person
           %td= link_to 'Edit', edit_person_path(person)
           %td= link_to 'Destroy', person, data: { confirm: 'Are you sure?' }, method: :delete
+
+
+%h1 Listing unconfirmed Friends
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th
+          Person Name
+        %th 
+          Friend Login
+        %th
+          Friend Name
+        %th
+          Friend Email
+        %th{colspan: 2}
+          Actions
+
+    %tbody
+      - @user_people.each do |person|
+        - person.unconfirmed_friends.each do |friend|
+          %tr{id: "Person_#{person.id}_#{friend.id}"}
+            %td= person.name
+            %td= friend.login
+            %td= friend.name
+            %td= friend.email
+            %td= link_to 'Confirm', person_friendship_path(person,friend), method: :patch, remote: true
+
+            %td= 'Destroy' # link_to 'Destroy', person_friendships_path(person,friend), data: { confirm: 'Are you sure?', person_id: person.id }, method: :delete

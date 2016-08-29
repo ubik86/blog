@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :people do
-    resources :friendships, only: [:new, :create, :destroy]
+    resources :friendships, only: [:new, :create, :update, :destroy]
   end
   
   resources :stats, only: [:index, :show]

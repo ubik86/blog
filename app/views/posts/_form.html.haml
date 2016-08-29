@@ -6,6 +6,15 @@
         - @post.errors.full_messages.each do |msg|
           %li= msg
 
+
+  .form-group
+    %h4
+      Disclaimer
+    %p
+      You can tag any person by using in content post @login
+      %br
+      Example: @btr, @wru, @irek
+
   .form-group.row
     = f.label :title
     = f.text_field :title, class: 'form-control'
