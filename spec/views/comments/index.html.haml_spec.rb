@@ -20,4 +20,9 @@ RSpec.describe "comments/index", type: :view do
     render
     assert_select "h2", :text => "Desc".to_s, :count => 2
   end
+
+  it "renders attributes in <p>" do
+    render
+    expect(rendered).to match(/Commented/)
+  end
 end

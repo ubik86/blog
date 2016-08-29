@@ -23,4 +23,14 @@ RSpec.describe "posts/index", type: :view do
     assert_select "h2", :text => "Title".to_s, :count => 2
     assert_select "h3", :text => "MyText".to_s, :count => 2
   end
+
+  it "renders comments count" do
+    render
+    expect(rendered).to match(/Comments/)
+  end
+
+  it "renders posted by" do
+    render
+    expect(rendered).to match(/Posted by/)
+  end
 end

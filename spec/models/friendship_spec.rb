@@ -11,5 +11,7 @@ RSpec.describe Friendship, type: :model do
     it 'should has friend' do 
       expect(friendship.friend.class).to eq Person
     end
+
+    
   end
 end
