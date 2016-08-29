@@ -7,6 +7,9 @@ RSpec.describe "posts/show", type: :view do
       :content => "MyText",
       :published => false
     ))
+
+    @tags = []
+    3.times{|i| @tags << FactoryGirl.build(:tag) }
   end
 
   it "renders attributes in <p>" do
