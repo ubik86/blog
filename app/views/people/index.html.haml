@@ -49,12 +49,12 @@
 
     %tbody
       - @user_people.each do |person|
-        - person.unconfirmed_friends.each do |friend|
+        - person.unconfirmed_inv_friends.each do |friend|
           %tr{id: "Person_#{person.id}_#{friend.id}"}
             %td= person.name
             %td= friend.login
             %td= friend.name
             %td= friend.email
-            %td= link_to 'Confirm', person_friendship_path(person,friend), method: :patch, remote: true
+            %td= link_to 'Confirm', person_friendship_path(friend, person), method: :patch, remote: true
 
-            %td= 'Destroy' # link_to 'Destroy', person_friendships_path(person,friend), data: { confirm: 'Are you sure?', person_id: person.id }, method: :delete
+            %td= link_to 'Destroy', person_friendship_path(friend,person), data: { confirm: 'Are you sure?'}, method: :delete, remote: true

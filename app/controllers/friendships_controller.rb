@@ -1,7 +1,8 @@
 class FriendshipsController < ApplicationController
 
   def new
-    @person = Person.find(params[:person_id])
+    @person     = Person.find(params[:person_id])
+    @friends    = @person.friends
     @friendship = @person.friendships.build
   end
 
@@ -27,10 +28,8 @@ class FriendshipsController < ApplicationController
     respond_to do |format|
       if errors.empty? && success.size > 0
         format.html { redirect_to @person, notice: "Added friendship for #{search_string}"  }
-        #format.json { render :show, status: :created, location: @person }
       else
         format.html { redirect_to @person, notice: "Can't added friends #{errors.join(', ')}" } 
-        #format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -50,12 +49,14 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship = Friendship.find(params[:id])
+    @friendship = Friendship.where(friend_id: params[:id], person_id: params[:person_id]).first
 
     respond_to do |format|
       if @friendship.destroy
-        format.html { redirect_to @person, notice: 'Removed friendship.' }
-      end      
+        format.js 
+      else
+        format.js { render :action => 'new' }
+      end  
     end
   end
 
@@ -64,6 +65,5 @@ class FriendshipsController < ApplicationController
   def friendships_params
     params.require(:post).permit(:title, :content, :published, :page)
   end
-
 
 end
