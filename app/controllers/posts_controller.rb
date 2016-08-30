@@ -70,7 +70,7 @@ class PostsController < ApplicationController
 
   # Create tags for people founded in post
   def create_tags
-    @people = find_taggable(@post.content)
+    @people = Post.find_taggable(@post.content)
 
     @people[:found].each do |person|
       @post.tags.create(person: person, user: @post.user)

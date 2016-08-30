@@ -26,10 +26,10 @@ class Post < ActiveRecord::Base
     logins  = tags.map{|i| i.sub('@','')}
     found, not_found = [],[] 
     
-    Person.where(login: logins)
+    people = Person.where(login: logins)
 
     logins.each do |login|
-      person = Person.where(login: login).first
+      person = people.select{|p| p.login == login}.first
       if person.nil?
         not_found << login
       else

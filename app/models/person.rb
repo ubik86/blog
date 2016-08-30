@@ -9,16 +9,16 @@ class Person < ActiveRecord::Base
 
   has_many :friends,                  through: :friendships
 
+  # helper relations friendships
   has_many :confirmed_friendships,  -> {confirmed}, class_name: :Friendship
   has_many :confirmed_friends,        through: :confirmed_friendships, source: :friend
 
   has_many :unconfirmed_friendships,  -> {unconfirmed}, class_name: :Friendship
   has_many :unconfirmed_friends,        through: :unconfirmed_friendships, source: :friend
 
-
+  # helper relations inverse friendships
   has_many :inverse_friendships,  foreign_key: :friend_id, class_name:  :Friendship
   has_many :inverse_friends,    through: :inverse_friendships, source: :person
-
 
   has_many :unconfirmed_inv_friendships,  -> {unconfirmed}, class_name: :Friendship, foreign_key: :friend_id
   has_many :unconfirmed_inv_friends,        through: :unconfirmed_inv_friendships, source: :person

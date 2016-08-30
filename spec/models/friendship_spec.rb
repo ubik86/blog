@@ -12,6 +12,6 @@ RSpec.describe Friendship, type: :model do
       expect(friendship.friend.class).to eq Person
     end
 
-    
+
   end
 end
