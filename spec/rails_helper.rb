@@ -119,4 +119,8 @@ RSpec.configure do |config|
   # Config DatabaseCleaner END
 
   OmniAuth.config.test_mode = true
+
+  # default behavior for hidden elements
+  Capybara.ignore_hidden_elements = false
+
 end

@@ -15,5 +15,13 @@ RSpec.describe tag, type: :model do
     it 'should has user' do 
       expect(tag.user.class).to eq User
     end
+
+    it 'not valid attributes' do
+      expect(Tag.new).to_not be_valid
+    end
+
+    it 'valid attributes' do
+      expect(tag).to be_valid
+    end
   end
 end
