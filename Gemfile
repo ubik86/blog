@@ -73,6 +73,8 @@ group :development, :test do
   gem 'rspec-rails', require: false
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'capybara-screenshot'
+  
   gem 'database_cleaner'
 
   gem 'guard-rspec', require: false

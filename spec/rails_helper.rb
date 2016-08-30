@@ -10,6 +10,7 @@ require 'support/omniauth_macros'
 require 'support/request_helpers'
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
 require 'omniauth'
 
 # Add additional requires below this line. Rails is not loaded until this point!

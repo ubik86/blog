@@ -1,4 +1,4 @@
 = render 'form'
 -if @friends.size > 0
-  Now are friends:
+  Now friends are:
   = @friends.collect{|f| "@#{f.login}"}.join(', ')
