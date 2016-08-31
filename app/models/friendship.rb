@@ -20,4 +20,44 @@ class Friendship < ActiveRecord::Base
     end
     return true
   end
+
+end
+
+
+
+# class Friendship::Relation
+# has methods that return array of Person objects
+#
+# Example:
+# rel = Friendship::Relation.new Person.first
+# rel.friends_of_friend
+# rel.mutual_friends
+
+class Friendship::Relation
+  attr_accessor :friends, :fof, :fwf, :mf, :ivf
+
+  def initialize(person)
+    @person = person
+    @friends = @person.friends.includes(:friends)
+  end
+
+  # return array friends_of_fr
+  def friends_of_friend
+    self.fof = @friends.collect{|f| f.friends}.flatten.uniq.delete_if{|f| f == @person}
+  end
+
+  def friends_with_friends
+    f_o_f = @friends + friends_of_friend
+    f_p_f = (@friends+f_o_f).delete_if{|f| f == @person}
+
+    self.fwf = f_p_f.uniq.delete_if{|f| f == @person}
+  end
+
+  def mutual_friends
+    self.mf = friends_with_friends & @friends   
+  end
+
+  def inverse_friends
+    self.ivf = @person.inverse_friends
+  end
 end

@@ -46,20 +46,14 @@ class Person < ActiveRecord::Base
     return confirmed
   end
   
-  # This method find Friends of Friend, will return a hash with keys describe below
-  # 
-  # friends: friends
-  # fof: friends of friends
-  # fwf: friends of friends with my friends
-  # mf: mutual friends
-  # }
+
   def fof
-    f       = self.friends.includes(:friends)
-    f_o_f   = f.collect{|f| f.friends}.flatten.uniq.delete_if{|f| f == self}
-    f_p_f   = (f+f_o_f).delete_if{|f| f == self}
-    f_w_f   = f_p_f.uniq.delete_if{|f| f == self}
-    mf      = f_o_f & f
-    iv_f    = self.inverse_friends
+    rel     = Friendship::Friend.new(self)
+    f       = rel.friends
+    f_o_f   = rel.friends_of_friend
+    f_w_f   = rel.friends_with_friends
+    mf      = rel.mutual_friends
+    iv_f    = rel.inverse_friends
 
     {friends: f, fof: f_o_f, fwf: f_w_f, mf: mf, iv_f: iv_f}
   end

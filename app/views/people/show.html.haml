@@ -50,7 +50,7 @@
           Actions
 
     %tbody
-      - @fof[:fof].each do |friend|
+      - @rel.friends_of_friend.each do |friend|
         %tr
           %td= friend.login
           %td= friend.name
@@ -75,7 +75,7 @@
           Actions
 
     %tbody
-      - @fof[:mf].each do |friend|
+      - @rel.mutual_friends.each do |friend|
         %tr
           %td= friend.login
           %td= friend.name
@@ -101,7 +101,7 @@
           Actions
 
     %tbody
-      - @fof[:iv_f].each do |friend|
+      - @rel.inverse_friends.each do |friend|
         %tr
           %td= friend.login
           %td= friend.name
