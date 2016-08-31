@@ -35,12 +35,7 @@ Loging process needs to give email and password.
 
 ### Requirements
 
-
-[HOMEBREW](http://brew.sh)
-
-[RUBY 2.1](https://www.ruby-lang.org)
-
-[RVM](https://rvm.io)
+[RUBY 2.3.1](https://www.ruby-lang.org)
 
 [RAILS 4](https://github.com/rails/rails)
 

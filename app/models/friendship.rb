@@ -14,11 +14,10 @@ class Friendship < ActiveRecord::Base
 
   # validates method check that person is a friend
   def person_is_friend?
-    ret = true
     if self.person_id == self.friend_id 
-      ret = false
-      self.errors.add :base, "Person and friend are the same"
+      self.errors.add :base, "Person can't be a friend"
+      return false
     end
-    return ret
+    return true
   end
 end
