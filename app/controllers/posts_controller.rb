@@ -2,8 +2,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  #include PostsHelper
-
   def index
     @posts = current_user.posts.search(params[:search]).includes(:comments).page params[:page]
   end

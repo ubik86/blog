@@ -2,8 +2,9 @@ class Friendship < ActiveRecord::Base
   belongs_to :person
   belongs_to :friend, class_name:   :Person
 
-  validate :person_is_friend?
+  validate  :person_is_friend?
   validates :person_id, uniqueness: {scope: [:friend_id]}
+  validate :friends_now?
 
   # helper scope methods
   scope :confirmed, -> { where.not(confirmed_at: nil)}
@@ -18,6 +19,18 @@ class Friendship < ActiveRecord::Base
       self.errors.add :base, "Person can't be a friend"
       return false
     end
+
+    return true
+  end
+
+
+  def friends_now?
+    rel = Friendship.where(person_id: [self.person_id, self.friend_id], friend_id:[self.friend_id, self.person_id])
+    unless rel.empty?
+      self.errors.add :base, "@#{self.person.login} and @#{self.friend.login} are already friends"
+      return false
+    end
+
     return true
   end
 
@@ -26,7 +39,7 @@ end
 
 
 # class Friendship::Relation
-# has methods that return array of Person objects
+# has few methods that return array of Person related objects
 #
 # Example:
 # rel = Friendship::Relation.new Person.first
@@ -38,7 +51,7 @@ class Friendship::Relation
 
   def initialize(person)
     @person = person
-    @friends = @person.friends.includes(:friends)
+    @friends ||= @person.friends.includes(:friends)
   end
 
   # return array friends_of_fr
@@ -58,6 +71,6 @@ class Friendship::Relation
   end
 
   def inverse_friends
-    self.ivf = @person.inverse_friends
+    self.ivf ||= @person.inverse_friends
   end
 end
