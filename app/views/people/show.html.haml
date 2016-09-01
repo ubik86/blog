@@ -17,8 +17,8 @@
           Actions
 
     %tbody
-      - @friendships.each do |friendship|
-        -friend = friendship.friend
+      - @friends.each do |friend|
+        -friendship = @person.friendships.where(friend: friend).first
         %tr{id: "Person_#{@person.id}_#{friend.id}"}
           %td= friend.login
           %td= friend.name
@@ -76,32 +76,6 @@
 
     %tbody
       - @rel.mutual_friends.each do |friend|
-        %tr
-          %td= friend.login
-          %td= friend.name
-          %td= friend.email
-
-          %td= link_to 'Show', friend
-
-
-.page-header
-  %h1 Inverse Friends
-
-.table-responsive
-  %table.table.table-striped.table-bordered.table-hover
-    %thead
-      %tr
-        %th 
-          Login
-        %th
-          Name
-        %th
-          Email
-        %th
-          Actions
-
-    %tbody
-      - @rel.inverse_friends.each do |friend|
         %tr
           %td= friend.login
           %td= friend.name

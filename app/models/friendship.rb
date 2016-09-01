@@ -51,7 +51,7 @@ class Friendship::Relation
 
   def initialize(person)
     @person = person
-    @friends ||= @person.friends.includes(:friends)
+    @friends ||= @person.all_friends
   end
 
   # return array friends_of_fr
@@ -68,9 +68,5 @@ class Friendship::Relation
 
   def mutual_friends
     self.mf = friends_with_friends & @friends   
-  end
-
-  def inverse_friends
-    self.ivf ||= @person.inverse_friends
   end
 end

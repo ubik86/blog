@@ -11,8 +11,7 @@ class PeopleController < ApplicationController
 
 
   def show
-    @friendships = @person.friendships
-    @friends     = @person.friends
+    @friends     = @person.all_friends
     @rel         = Friendship::Relation.new @person
   end
 

@@ -6,7 +6,6 @@ class Person < ActiveRecord::Base
 
   #Friendship assciations
   has_many :friendships
-
   has_many :friends,                  through: :friendships
 
   # helper relations friendships
@@ -44,6 +43,12 @@ class Person < ActiveRecord::Base
     end
 
     return confirmed
+  end
+
+
+  # return friends and inverse_friends
+  def all_friends
+    (friends.all + inverse_friends.all).uniq
   end
   
 
