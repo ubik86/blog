@@ -16,6 +16,9 @@
 !/log/.keep
 /tmp
 .byebug_history
+.dockerignore
+docker-compose.yml
+Dockerfile
 
 #Vagrant
 Vagrantfile
