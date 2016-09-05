@@ -74,6 +74,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'capybara-screenshot'
+  gem 'selenium-webdriver'
+  gem 'cucumber-rails', :require => false
   
   gem 'database_cleaner'
 
