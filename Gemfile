@@ -40,6 +40,10 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 # Fake personal data generator
 gem 'faker'
+gem 'dalli'
+
+# exception logger
+gem "exception_logger", :github => "ryancheung/exception_logger"
 
 
 # Image upload library

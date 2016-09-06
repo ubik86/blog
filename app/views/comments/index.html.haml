@@ -5,7 +5,7 @@
       New Comment
   %h1 Listing comments
 
--unless @comments.empty?
+-if not @comments.empty?
   .row
     .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
       - cache @comments do

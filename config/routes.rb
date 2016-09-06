@@ -39,6 +39,18 @@ Rails.application.routes.draw do
     end
   end
 
+
+  # ExceptionLogger routes
+  mount ExceptionLogger::Engine => "/exception_logger"
+
+
+  # Error pages with errors controller
+  %w( 404 422 500 503 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
+
+
+
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

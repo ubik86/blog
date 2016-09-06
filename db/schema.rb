@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824134758) do
+ActiveRecord::Schema.define(version: 20160906114203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 20160824134758) do
   add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
   add_index "friendships", ["person_id", "friend_id"], name: "index_friendships_on_person_id_and_friend_id", unique: true, using: :btree
   add_index "friendships", ["person_id"], name: "index_friendships_on_person_id", using: :btree
+
+  create_table "logged_exceptions", force: :cascade do |t|
+    t.string   "exception_class"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.text     "message"
+    t.text     "backtrace"
+    t.text     "environment"
+    t.text     "request"
+    t.datetime "created_at"
+  end
 
   create_table "people", force: :cascade do |t|
     t.integer  "user_id"
