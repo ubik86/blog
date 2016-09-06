@@ -48,6 +48,7 @@ RSpec.configure do |config|
   config.extend OmniauthMacros, type: :controller
   config.extend OmniauthMacros, type: :request
   config.include Requests::JsonHelpers, type: :request
+  config.include Requests::JsonHelpers, type: :controller
 
   include Warden::Test::Helpers
   Warden.test_mode!

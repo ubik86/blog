@@ -21,4 +21,42 @@ RSpec.describe Comment, type: :model do
       expect(@stat.comments.size).to eq 6
     end
   end
+
+  context 'when method period is called' do
+    it 'should return posts and comments' do 
+      period = @stat.period(:year)
+
+      expect(period[:post]).to eq 3
+      expect(period[:comment]).to eq 0
+    end
+
+    it 'should return all stats' do 
+      all = @stat.all
+
+      expect(all[:year][:post]).to eq 3
+      expect(all[:year][:comment]).to eq 0
+
+    end
+  end
+
+  context 'when method missing is called' do
+    it 'should has implemented method missing' do 
+      yearly = @stat.yearly
+
+      expect(yearly[:post]).to eq 3
+      expect(yearly[:comment]).to eq 0
+    end
+
+
+    it 'should has raise exception on NoMethodError'  do
+      begin
+        @stat.missingmethod
+      rescue => e
+      end
+
+      expect(e.class).to eq NoMethodError
+
+    end
+  end
+
 end

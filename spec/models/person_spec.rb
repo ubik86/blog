@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 person = FactoryGirl.build(:person)
+friend = 
 
 RSpec.describe Person, type: :model do
   context 'when has person' do
@@ -23,6 +24,26 @@ RSpec.describe Person, type: :model do
 
     describe "Associations" do
       it { should belong_to(:user) }
+    end
+
+    it "should return friends of friend" do 
+      fof = person.fof
+
+      expect(fof.class).to eq Hash
+      expect(fof[:friends]).to eq []
+    end
+
+    it "should has search" do
+      result = Person.search('foo')
+
+      expect(result).to eq []
+    end
+
+    it 'should unconfirmed friends' do 
+      friend = FactoryGirl.build(:person)
+      f = person.confirmed_friend?(friend)
+
+      expect(f).to eq false
     end
   end
 end

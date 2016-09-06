@@ -13,7 +13,6 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     it "return  active controller" do
-
       expect(helper.active_controller('posts')).to eq('active')
     end
   end

@@ -54,7 +54,6 @@ RSpec.describe PostsController, type: :controller do
       get :index, params: {page: 1, search: ''}, session: valid_session
       expect([Post.last]).to eq([@post])
     end
-
   end
 
   describe "GET #show" do

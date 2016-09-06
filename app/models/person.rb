@@ -53,13 +53,12 @@ class Person < ActiveRecord::Base
   
 
   def fof
-    rel     = Friendship::Friend.new(self)
+    rel     = Friendship::Relation.new(self)
     f       = rel.friends
     f_o_f   = rel.friends_of_friend
     f_w_f   = rel.friends_with_friends
     mf      = rel.mutual_friends
-    iv_f    = rel.inverse_friends
 
-    {friends: f, fof: f_o_f, fwf: f_w_f, mf: mf, iv_f: iv_f}
+    {friends: f, fof: f_o_f, fwf: f_w_f, mf: mf}
   end
 end

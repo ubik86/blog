@@ -31,5 +31,21 @@ RSpec.describe User, type: :model do
 
       expect(User.order(:email).map{|a| a.email.split('@').first}).to eq(['abc', 'xyz'])
     end
+
+    it 'should has password_match? as true' do
+      match = user.password_match?
+      expect(match).to eq true
+    end
+
+    it 'should has finished_profile? as true' do
+      match = user.finished_profile?
+      expect(match).to eq nil
+    end
+
+    it 'should has profile_image? as true' do
+      img = user.profile_img
+      expect(img).to eq user.profile_image
+    end
+
   end
 end
