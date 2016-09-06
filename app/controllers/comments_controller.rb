@@ -4,14 +4,13 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-
     # load comments belongs to post (or all comments), includes post in one query
     unless params[:post_id].nil?
       @comments = current_user.posts.find(params[:post_id]).comments.includes(:post).page params[:page]
       @post = current_user.posts.find(params[:post_id])
     end
 
-      @comments ||= current_user.comments.includes(:post).page params[:page]
+    @comments ||= current_user.comments.includes(:post).page params[:page]
   end
 
 

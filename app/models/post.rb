@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   has_many :tags, as: :postable, dependent: :destroy 
   has_many :people, through: :tags
 
-  belongs_to :user
+  belongs_to :user, touch: true
   paginates_per 5
 
   validates :title, :content, presence: true
@@ -18,6 +18,11 @@ class Post < ActiveRecord::Base
     self.comments.size
   end
 
+  def cache_search(search)
+    Rails.cache.fetch("#{cache_key}/cache_search", expires_in: 12.hours) do
+      Post.all
+    end 
+  end
 
   # find tagged people (@login) from Post.content
   # return hash {found: [Person], not_found: [String]}

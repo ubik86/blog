@@ -15,9 +15,10 @@
       %span.input-group-btn
         = button_tag "Submit", type: :submit, class: 'btn btn-default'
 .row
-  = render partial: 'row', collection: @posts
-  %hr/
-  / Pager
-  %ul.pager
-    %li.next
-      = paginate @posts
+  - cache @posts do 
+    = render partial: 'row', collection: @posts
+    %hr/
+    / Pager
+    %ul.pager
+      %li.next
+        = paginate @posts
