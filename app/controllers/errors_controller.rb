@@ -1,8 +1,8 @@
 class ErrorsController < ApplicationController
  
-   def show
+  def show
     flash.alert = "Status #{status_code}"
-    render status_code.to_s, :status => status_code, layout: :errors
+    render status_code.to_s, :status => status_code
   end
  
   protected

@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
 
   # override search within two fields content and title
   def self.search(search)
-    where(["title LIKE ?  OR content LIKE ? ", "%#{search}%", "%#{search}%"]).page
+    where(["title LIKE ?  OR content LIKE ? ", "%#{search}%", "%#{search}%"]).page nil
   end
 
   # return quantity of comments and all childrens
