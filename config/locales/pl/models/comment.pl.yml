@@ -1,0 +1,9 @@
+pl:
+  activerecord:
+    models:
+      comment:
+        one: Komentarz
+        other: Komentarze
+    attributes:
+      comment:
+        desc: 'Opis'

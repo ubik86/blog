@@ -31,19 +31,19 @@
           %ul.nav.navbar-nav.navbar-right
             -if user_signed_in?
               %li{class: active_controller('posts')}
-                = link_to "Posts", posts_path
+                = link_to t('activerecord.models.post.other'), posts_path
               %li{class: active_controller('comments')}
-                = link_to "Comments", comments_path
+                = link_to t('activerecord.models.comment.other'), comments_path
               %li{class: active_controller('peoples')}
-                = link_to "People", people_path
+                = link_to t('activerecord.models.person.other'), people_path
               %li{class: active_controller('profiles')}
                 = link_to "Profile", profile_path(current_user)
               %li
-                = link_to "Logout", destroy_user_session_path
+                = link_to t('devise.sessions.user.log_out'), destroy_user_session_path
     
             -else 
               %li
-                = link_to "Login", new_user_session_path
+                = link_to t('devise.sessions.user.log_in'), new_user_session_path
 
     %header.intro-header{:style => "background-image: url('#{asset_path 'home-bg.jpg'}')"}
       .container-fluid
@@ -51,6 +51,7 @@
           .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
             .site-heading
               %h1 BLStream BLOG
+              = I18n.locale.to_s
               %hr.small/
               %span.subheading A Clean Blog Theme by Start Bootstrap
 

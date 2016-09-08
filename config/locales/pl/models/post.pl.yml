@@ -1,0 +1,11 @@
+pl:
+  activerecord:
+    models:
+      post:
+        one: Post
+        other: Posty
+    attributes:
+      post:
+        title: 'Tytuł'
+        content: 'Treść'
+        published: 'Opublikowany'

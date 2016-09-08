@@ -1,0 +1,11 @@
+pl:
+  activerecord:
+    models:
+      person:
+        one: Osoba
+        other: Ludzie
+    attributes:
+      person:
+        name: 'Imię'
+        login: 'Login'
+        email: 'Email'
