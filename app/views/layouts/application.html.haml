@@ -25,7 +25,7 @@
             %span.sr-only Toggle navigation
             Menu
             %i.fa.fa-bars
-          = link_to "Blog", root_path, class: "navbar-brand"
+          = link_to "Blog", root_path, class: "navbar-brand"          
         / Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
@@ -40,18 +40,19 @@
                 = link_to "Profile", profile_path(current_user)
               %li
                 = link_to t('devise.sessions.user.log_out'), destroy_user_session_path
-    
             -else 
               %li
                 = link_to t('devise.sessions.user.log_in'), new_user_session_path
-
+            %li
+              = link_to 'En', url_for(locale: :en)
+            %li
+              = link_to 'Pl', url_for(locale: :pl)
     %header.intro-header{:style => "background-image: url('#{asset_path 'home-bg.jpg'}')"}
       .container-fluid
         .row
           .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
             .site-heading
               %h1 BLStream BLOG
-              = I18n.locale.to_s
               %hr.small/
               %span.subheading A Clean Blog Theme by Start Bootstrap
 

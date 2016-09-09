@@ -5,6 +5,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string        :name
       t.string        :login
       t.string        :email
+      t.string        :slug, index: true, uniq: true
 
       t.timestamps null: false
     end

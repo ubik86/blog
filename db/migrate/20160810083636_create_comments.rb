@@ -5,6 +5,8 @@ class CreateComments < ActiveRecord::Migration
       t.references :parent, index: true
       t.references :user, index: true
       t.string :desc
+      t.string        :slug, index: true, uniq: true
+
 
       t.timestamps null: false
     end

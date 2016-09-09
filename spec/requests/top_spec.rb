@@ -11,8 +11,7 @@ RSpec.describe "Top", type: :request do
 
       click_link "Sign in with Facebook"
       expect(page).to have_content("Successfully authenticated")  # user name
-      #page.should have_css('img', :src => 'mock_user_thumbnail_url') # user image
-      expect(page).to have_content("Logout")
+      expect(page).to have_content("Log Out")
     end
 
     it "can handle authentication error" do
@@ -20,7 +19,6 @@ RSpec.describe "Top", type: :request do
       visit '/'
       expect(page).to have_content("Sign in with Facebook")
       click_link "Sign in with Facebook"
-      #expect(page).to have_content('Authentication failure')
     end
   end
 end

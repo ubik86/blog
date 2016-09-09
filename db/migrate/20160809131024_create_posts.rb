@@ -6,6 +6,8 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.text :content
       t.boolean :published
+      t.string        :slug, index: true, uniq: true
+
 
       t.timestamps null: false
     end

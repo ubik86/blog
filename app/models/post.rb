@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :finders]
+
   has_many :comments, dependent: :destroy
   has_many :tags, as: :postable, dependent: :destroy 
   has_many :people, through: :tags
@@ -7,6 +10,7 @@ class Post < ActiveRecord::Base
   paginates_per 5
 
   validates :title, :content, presence: true
+
 
   # override search within two fields content and title
   def self.search(search)
